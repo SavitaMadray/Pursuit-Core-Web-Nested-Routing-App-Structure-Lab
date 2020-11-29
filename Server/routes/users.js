@@ -50,9 +50,12 @@ router.delete("/remove/:user", (req, res, next) => {
 
 router.put("/update/:user", (req, res, next) => {
   let user = req.params.user;
+
   for (let i = 0; i < users.length; i++) {
     if (users[i].username === user) {
-      user[i] = req.body;
+      if (req.body.email) {
+        users[i].email = req.body.email;
+      }
     }
   }
 
